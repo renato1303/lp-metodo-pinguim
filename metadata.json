@@ -1,0 +1,6 @@
+{
+  "name": "Método Pinguim",
+  "description": "Landing page premium de alta conversão para o Método Pinguim, focada em ajudar famílias a criarem rotinas saudáveis e reduzirem o uso excessivo de telas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
