@@ -50,9 +50,6 @@ export default function SobreCriador() {
           {/* Right Column: Founder Info */}
           <div className="lg:col-span-7 flex flex-col justify-center space-y-5 sm:space-y-6">
             <div className="space-y-1 text-center lg:text-left">
-              <span className="text-[11px] font-bold uppercase tracking-widest text-brand-accent">
-                QUEM TE COMPANHARÁ
-              </span>
               <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
                 Walace Freiman
               </h2>

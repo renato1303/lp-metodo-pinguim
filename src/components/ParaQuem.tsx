@@ -25,16 +25,6 @@ export default function ParaQuem({ onOpenCheckout }: ParaQuemProps) {
         
         {/* Section Heading */}
         <div className="mx-auto max-w-3xl text-center mb-10 sm:mb-16">
-          <motion.div 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-1.5 rounded-full bg-white/10 border border-white/5 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-accent mb-4"
-          >
-            <UserCheck className="h-4 w-4 text-brand-light" />
-            <span>Perfil do Aluno</span>
-          </motion.div>
           
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}

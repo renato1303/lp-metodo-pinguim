@@ -82,16 +82,7 @@ export default function Entregaveis() {
         
         {/* Deliverables Section Title */}
         <div className="mx-auto max-w-3xl text-center mb-10 sm:mb-16">
-          <motion.div 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-1.5 rounded-full bg-white/10 border border-white/5 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-accent mb-4"
-          >
-            <Package className="h-4 w-4 text-brand-light animate-pulse" />
-            <span>Conteúdo Completo</span>
-          </motion.div>
+          
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -160,15 +151,6 @@ export default function Entregaveis() {
 
         {/* Bonus Section Title */}
         <div className="mx-auto max-w-3xl text-center mb-10 sm:mb-16 border-t border-white/5 pt-12 sm:pt-16">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-1.5 rounded-full bg-brand-accent/20 border border-brand-accent/30 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-accent mb-4"
-          >
-            <Sparkles className="h-4 w-4 text-brand-accent animate-spin-slow" />
-            <span>Ainda Não Acabou!</span>
-          </motion.div>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

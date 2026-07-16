@@ -34,10 +34,6 @@ export default function RecapitulandoValor({ onOpenCheckout }: RecapitulandoValo
         
         {/* Section Heading */}
         <div className="text-center mb-8 sm:mb-12">
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 border border-white/5 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-accent mb-4">
-            <Sparkles className="h-4 w-4 text-brand-light animate-pulse" />
-            <span>Resumo da Oferta</span>
-          </div>
           <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
             Recapitulando...
           </h2>

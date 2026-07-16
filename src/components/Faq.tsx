@@ -57,10 +57,6 @@ export default function Faq() {
         
         {/* Heading */}
         <div className="text-center mb-10 sm:mb-16">
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 border border-white/5 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-accent mb-4">
-            <HelpCircle className="h-4 w-4 text-brand-light" />
-            <span>Dúvidas Comuns</span>
-          </div>
           <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
             Perguntas Frequentes
           </h2>

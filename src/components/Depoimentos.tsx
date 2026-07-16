@@ -1,5 +1,6 @@
-import React from "react";
-import { MessageSquare, Star, User, ArrowRight } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion } from "motion/react";
 
 interface Testimonial {
   id: string;
@@ -107,6 +108,35 @@ function TestimonialAvatar({ src, name }: { src: string; name: string }) {
 }
 
 export default function Depoimentos() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(3);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setVisibleCount(1);
+      } else if (window.innerWidth < 1024) {
+        setVisibleCount(2);
+      } else {
+        setVisibleCount(3);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const maxIndex = Math.max(0, TESTIMONIALS.length - visibleCount);
+  const safeActiveIndex = Math.min(activeIndex, maxIndex);
+
+  const prev = () => {
+    setActiveIndex((prev) => Math.max(prev - 1, 0));
+  };
+
+  const next = () => {
+    setActiveIndex((prev) => Math.min(prev + 1, maxIndex));
+  };
+
   return (
     <section className="bg-gradient-to-b from-[#020a14] via-[#06203a] to-[#040e1b] py-20 lg:py-28 border-t border-white/5 relative overflow-hidden">
       {/* Decorative accents for visual rhythm */}
@@ -115,11 +145,7 @@ export default function Depoimentos() {
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
         
         {/* Title and Subtitle */}
-        <div className="mx-auto max-w-4xl text-center mb-16">
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 border border-white/5 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-accent mb-4">
-            <MessageSquare className="h-4 w-4 text-brand-light" />
-            <span>Depoimentos Reais</span>
-          </div>
+        <div className="mx-auto max-w-4xl text-center mb-10 sm:mb-16">
           <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-[40px] lg:leading-tight">
             Veja o antes e depois de famílias que sofriam com o descontrole das telas e conseguiram recuperar a harmonia com o Método Pinguim
           </h2>
@@ -128,53 +154,97 @@ export default function Depoimentos() {
           </p>
         </div>
 
-        {/* Helper visual indicator for mobile scroll */}
-        <div className="flex justify-center items-center gap-1.5 text-xs text-brand-light/70 mb-6 sm:hidden animate-pulse">
-          <span>Arraste para o lado para ver mais</span>
-          <ArrowRight className="h-3.5 w-3.5" />
-        </div>
-
-        {/* Testimonials Grid */}
-        <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-6 -mx-6 px-6 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto scrollbar-none scroll-smooth">
-          {TESTIMONIALS.map((t) => (
-            <div 
-              key={t.id} 
-              className="flex flex-col justify-between rounded-2xl border border-white/10 bg-white/5 p-6 hover:bg-white/10 hover:border-brand-light/30 transition-all duration-300 backdrop-blur-sm min-w-[290px] max-w-[320px] sm:min-w-0 sm:max-w-none snap-start shrink-0"
+        {/* Carousel Slider */}
+        <div className="relative max-w-6xl mx-auto">
+          {/* Main viewport */}
+          <div className="overflow-hidden px-1">
+            <motion.div
+              className="flex -mx-3"
+              animate={{ x: `-${safeActiveIndex * (100 / visibleCount)}%` }}
+              transition={{ type: "spring", stiffness: 180, damping: 24 }}
             >
-              <div>
-                {/* Rating stars */}
-                <div className="flex gap-1 text-brand-accent mb-4">
-                  {[...Array(t.stars)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-current" />
-                  ))}
-                </div>
+              {TESTIMONIALS.map((t) => (
+                <div
+                  key={t.id}
+                  className="w-full sm:w-1/2 lg:w-1/3 shrink-0 px-3 py-2"
+                >
+                  <div className="flex flex-col h-full justify-between rounded-2xl border border-white/10 bg-white/5 p-6 hover:bg-white/10 hover:border-brand-light/30 transition-all duration-300 backdrop-blur-sm shadow-xl">
+                    <div>
+                      {/* Rating stars */}
+                      <div className="flex gap-1 text-brand-accent mb-4">
+                        {[...Array(t.stars)].map((_, i) => (
+                          <Star key={i} className="h-4 w-4 fill-current" />
+                        ))}
+                      </div>
 
-                {/* State compare */}
-                <div className="space-y-2 mb-4 text-xs font-sans border-b border-white/5 pb-4">
-                  <p className="text-red-300">
-                    <span className="font-extrabold uppercase tracking-wider text-[10px] mr-1">Antes:</span>{t.initialState}
-                  </p>
-                  <p className="text-emerald-300">
-                    <span className="font-extrabold uppercase tracking-wider text-[10px] mr-1">Depois:</span>{t.afterState}
-                  </p>
-                </div>
+                      {/* State compare */}
+                      <div className="space-y-2 mb-4 text-xs font-sans border-b border-white/5 pb-4">
+                        <p className="text-red-300">
+                          <span className="font-extrabold uppercase tracking-wider text-[10px] mr-1">Antes:</span>{t.initialState}
+                        </p>
+                        <p className="text-emerald-300">
+                          <span className="font-extrabold uppercase tracking-wider text-[10px] mr-1">Depois:</span>{t.afterState}
+                        </p>
+                      </div>
 
-                {/* Core text */}
-                <p className="font-sans text-sm text-white/90 italic leading-relaxed mb-6">
-                  "{t.text}"
-                </p>
-              </div>
+                      {/* Core text */}
+                      <p className="font-sans text-sm text-white/90 italic leading-relaxed mb-6">
+                        "{t.text}"
+                      </p>
+                    </div>
 
-              {/* Author Info */}
-              <div className="flex items-center gap-3 pt-4 border-t border-white/5">
-                <TestimonialAvatar src={t.avatar} name={t.name} />
-                <div>
-                  <h4 className="font-display text-sm font-bold text-white leading-tight">{t.name}</h4>
-                  <p className="font-sans text-[11px] text-white/60">{t.role}</p>
+                    {/* Author Info */}
+                    <div className="flex items-center gap-3 pt-4 border-t border-white/5">
+                      <TestimonialAvatar src={t.avatar} name={t.name} />
+                      <div>
+                        <h4 className="font-display text-sm font-bold text-white leading-tight">{t.name}</h4>
+                        <p className="font-sans text-[11px] text-white/60">{t.role}</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Navigation Controls */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mt-10 px-3">
+            {/* Dots */}
+            <div className="flex gap-2.5">
+              {[...Array(maxIndex + 1)].map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveIndex(idx)}
+                  className={`h-2.5 rounded-full transition-all duration-300 ${
+                    safeActiveIndex === idx
+                      ? "w-8 bg-brand-accent"
+                      : "w-2.5 bg-white/10 hover:bg-white/30"
+                  }`}
+                  aria-label={`Ir para slide ${idx + 1}`}
+                />
+              ))}
             </div>
-          ))}
+
+            {/* Arrows */}
+            <div className="flex gap-3">
+              <button
+                onClick={prev}
+                disabled={safeActiveIndex === 0}
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white hover:bg-brand-accent hover:text-brand-dark hover:scale-105 active:scale-95 disabled:opacity-20 disabled:pointer-events-none transition-all duration-200 shadow-lg cursor-pointer"
+                aria-label="Depoimento anterior"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                onClick={next}
+                disabled={safeActiveIndex >= maxIndex}
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white hover:bg-brand-accent hover:text-brand-dark hover:scale-105 active:scale-95 disabled:opacity-20 disabled:pointer-events-none transition-all duration-200 shadow-lg cursor-pointer"
+                aria-label="Próximo depoimento"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -15,10 +15,6 @@ export default function Problema({ onOpenCheckout }: ProblemaProps) {
         
         {/* Title */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 border border-white/5 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-accent mb-4">
-            <ShieldAlert className="h-4 w-4 text-brand-light animate-pulse" />
-            <span>Uma Conversa Sincera</span>
-          </div>
           <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
             Você não aguenta mais mandar seu filho desligar o celular e receber de volta gritos, cara feia e birra?
           </h2>

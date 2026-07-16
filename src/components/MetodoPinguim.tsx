@@ -73,16 +73,7 @@ export default function MetodoPinguim() {
         
         {/* Title and Badge */}
         <div className="mx-auto max-w-3xl text-center mb-12 sm:mb-20">
-          <motion.div 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-1.5 rounded-full bg-white/10 border border-white/5 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-accent mb-4"
-          >
-            <Award className="h-4 w-4 text-brand-light animate-pulse" />
-            <span>Método Prático & Interativo</span>
-          </motion.div>
+          
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
