@@ -75,6 +75,37 @@ const TESTIMONIALS: Testimonial[] = [
   }
 ];
 
+// Helper component for testimonial avatars with state-based fallback
+function TestimonialAvatar({ src, name }: { src: string; name: string }) {
+  const [error, setError] = React.useState(false);
+
+  const getInitials = (fullName: string) => {
+    const parts = fullName.trim().split(" ");
+    if (parts.length >= 2) {
+      return `${parts[0][0]}${parts[parts.length - 1][0]}`.toUpperCase();
+    }
+    return fullName.slice(0, 2).toUpperCase();
+  };
+
+  if (error) {
+    return (
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-light/35 to-brand-accent/35 border border-white/20 text-brand-accent text-xs font-bold ring-2 ring-white/10 shadow-sm">
+        {getInitials(name)}
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={name}
+      className="h-10 w-10 shrink-0 rounded-full object-cover ring-2 ring-white/10"
+      onError={() => setError(true)}
+      referrerPolicy="no-referrer"
+    />
+  );
+}
+
 export default function Depoimentos() {
   return (
     <section className="bg-gradient-to-b from-[#020a14] via-[#06203a] to-[#040e1b] py-20 lg:py-28 border-t border-white/5 relative overflow-hidden">
@@ -136,12 +167,7 @@ export default function Depoimentos() {
 
               {/* Author Info */}
               <div className="flex items-center gap-3 pt-4 border-t border-white/5">
-                <img 
-                  src={t.avatar} 
-                  alt={t.name} 
-                  className="h-10 w-10 rounded-full object-cover ring-2 ring-white/10"
-                  referrerPolicy="no-referrer"
-                />
+                <TestimonialAvatar src={t.avatar} name={t.name} />
                 <div>
                   <h4 className="font-display text-sm font-bold text-white leading-tight">{t.name}</h4>
                   <p className="font-sans text-[11px] text-white/60">{t.role}</p>

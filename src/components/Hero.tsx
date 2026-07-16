@@ -27,11 +27,11 @@ export default function Hero({ onOpenCheckout }: HeroProps) {
             <span>Inscrições Abertas • Método Pinguim</span>
           </div>
 
-          <div className="space-y-2 sm:space-y-4">
-            <h1 className="font-display text-xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-snug sm:leading-tight">
+          <div className="space-y-3 sm:space-y-5">
+            <h1 className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-snug sm:leading-tight">
               Descubra como <span className="text-brand-accent">criar uma rotina digital saudável</span> para seus filhos em <span className="text-brand-light">até 14 dias</span>, mesmo que você enfrente birras e resistência constante hoje.
             </h1>
-            <p className="font-sans text-xs sm:text-base md:text-lg leading-relaxed text-white/80 max-w-3xl mx-auto">
+            <p className="font-sans text-sm sm:text-base md:text-lg leading-relaxed text-white/80 max-w-3xl mx-auto">
               O método científico e prático para recuperar a paz na sua casa, restabelecer a conexão real e guiar o desenvolvimento do seu filho de forma equilibrada no mundo moderno.
             </p>
           </div>
@@ -51,20 +51,20 @@ export default function Hero({ onOpenCheckout }: HeroProps) {
           </div>
 
           {/* High-Converting CTA Button Area */}
-          <div className="flex flex-col items-center gap-2.5 w-full max-w-md mx-auto pt-1">
+          <div className="flex flex-col items-center gap-3 w-full max-w-lg mx-auto pt-2">
             <button
               onClick={onOpenCheckout}
-              className="group cursor-pointer w-full inline-flex items-center justify-center gap-2 rounded-full bg-brand-accent px-6 py-3 sm:px-8 sm:py-4.5 text-xs sm:text-sm font-extrabold tracking-tight text-brand-dark shadow-xl shadow-brand-accent/20 transition-all hover:bg-white hover:shadow-white/20 hover:scale-[1.01] active:scale-[0.99]"
+              className="group cursor-pointer w-full inline-flex items-center justify-center gap-2.5 rounded-full bg-brand-accent px-6 py-4 sm:px-8 sm:py-4.5 text-sm sm:text-base font-extrabold tracking-tight text-brand-dark shadow-xl shadow-brand-accent/20 transition-all hover:bg-white hover:shadow-white/20 hover:scale-[1.01] active:scale-[0.99]"
             >
               QUERO O MÉTODO PINGUIM COM DESCONTO
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="h-4.5 w-4.5 transition-transform group-hover:translate-x-1" />
             </button>
             
-            <div className="flex flex-col items-center text-center space-y-0.5">
-              <span className="text-[10px] sm:text-xs font-semibold text-white/80">
+            <div className="flex flex-col items-center text-center space-y-1">
+              <span className="text-xs sm:text-sm font-semibold text-white/80">
                 Acesso imediato ao portal
               </span>
-              <span className="text-[9px] sm:text-[11px] text-brand-light font-bold">
+              <span className="text-[11px] sm:text-xs text-brand-light font-bold">
                 Garantia incondicional de 7 dias
               </span>
             </div>
